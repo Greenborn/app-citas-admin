@@ -1,59 +1,37 @@
-import { NgModule }                               from '@angular/core';
-import { BrowserModule }                          from '@angular/platform-browser';
-import { RouteReuseStrategy }                     from '@angular/router';
-import { FormsModule, ReactiveFormsModule }       from '@angular/forms';
-import { HttpClientModule }                       from '@angular/common/http';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule }      from '@angular/core';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen }                    from '@ionic-native/splash-screen/ngx';
-import { StatusBar }                       from '@ionic-native/status-bar/ngx';
-
-import { AppComponent }     from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent }     from './app.component';
+import { NgbAccordionModule, NgbModule, NgbNavModule, NgbPopoverModule }        from '@ng-bootstrap/ng-bootstrap';
+import { ChartModule } from 'angular-highcharts';
 
-import { HomePage }          from './pages/home/home';
-import { LoginPage }         from './pages/auth/login/login.page';
 
-import { LoadingComponent }      from './component/loading/loading.component';
+import { AutenticationModule } from './modules/autentication/autentication.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppUIUtilsModule } from './modules/AppUIUtils/app-uiutils.module';
 
-import { NgbModule }                      from '@ng-bootstrap/ng-bootstrap';
-import { NgbDateCustomParserFormatter }   from './providers/ngb-date-custom-parser-formatter.provider';
-import { NgbDateCustomI18 }               from './providers/ngb-date-custom-i18.provider';
-import { NgbDateParserFormatter, NgbDatepickerI18n } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule }        from '@angular/platform-browser/animations';
-
-import { AuthenticationGuard  } from './services/auth/auth.guard';
+import { LoadingComponent } from './modules/AppUIUtils/components/loading/loading.component';
+import { MessageComponent } from './modules/AppUIUtils/components/message/message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomePage,
-    LoginPage,
     LoadingComponent,
-    SideMenuComponent
+    MessageComponent
   ],
-  entryComponents: [],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(),
     AppRoutingModule,
-    NgbModule,
-    FormsModule, ReactiveFormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule
+    AutenticationModule,
+    FormsModule,
+    AppUIUtilsModule,
+    ReactiveFormsModule,
+    ChartModule,
+    NgbModule,NgbPopoverModule,
+    NgbNavModule, NgbAccordionModule
   ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    AuthenticationGuard,
-    { provide: RouteReuseStrategy,     useClass: IonicRouteStrategy },
-    { provide: LocationStrategy,       useClass: HashLocationStrategy },
-    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
-    { provide: NgbDatepickerI18n,      useClass: NgbDateCustomI18 }
-  ],
-  bootstrap: [
-    AppComponent
-  ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

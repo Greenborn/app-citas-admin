@@ -215,7 +215,6 @@ export class FormateoService {
 
       val = (val as string).replace(/^0+/, '');
       let s:string='';
-
       s=val.replace(/[^0-9,]/g, '');
       s=s.replace(',','.');
       if(s==".00") { s='0.00'; }

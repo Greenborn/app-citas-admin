@@ -1,23 +1,14 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { Router }    from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { HomePage  }            from './pages/home/home';
-import { LoginPage  }           from './pages/auth/login/login.page';
-
-
-import { AuthenticationGuard  } from './services/auth/auth.guard';
+import { AuthenticationGuard  } from 'src/app/modules/autentication/services/auth.guard';
 
 const routes: Routes = [
-  { path: '',              component: LoginPage },
-  { path: 'login',         component: LoginPage },
-  { path: 'home',          component: HomePage            , canActivate: [AuthenticationGuard]},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
-  ],
+  imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules, useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
