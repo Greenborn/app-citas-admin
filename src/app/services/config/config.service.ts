@@ -9,7 +9,8 @@ export class ConfigService {
   public getConfigData(){
     return {
       apiBaseUrl: "https://citas.api.greenborn.com.ar/",//"http://localhost:8000/"
-      appName: "app_lige_dev_"
+      appName: "app_lige_dev_",
+      loginAction:"login"
     };
   }
 
